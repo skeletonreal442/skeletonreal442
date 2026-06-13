@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>skeleton — links</title>
+<meta name="description" content="skeleton — Steam, GitHub, Discord" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>" />
+<style>
+  :root{
+    --bg:#0a0608;
+    --bg-2:#120a0f;
+    --white:#f2f4f8;
+    --dim:#9aa0ad;
+    --line:#2a1d24;
+    --ice:#74b6ff;
+    --ice-dim:#2d567f;
+    --blood:#ff3b54;
+    --blood-dim:#7d2030;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:"Space Grotesk",system-ui,sans-serif;
+    min-height:100dvh;
+    display:flex;align-items:center;justify-content:center;
+    padding:28px 20px;line-height:1.5;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(70% 80% at 0% 50%, rgba(255,59,84,.16), transparent 60%),
+      radial-gradient(70% 80% at 100% 50%, rgba(116,182,255,.14), transparent 60%),
+      linear-gradient(var(--line) 1px,transparent 1px) 0 0/44px 44px,
+      linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/44px 44px;
+    opacity:.6;
+    -webkit-mask:radial-gradient(120% 85% at 50% 45%,#000 25%,transparent 100%);
+            mask:radial-gradient(120% 85% at 50% 45%,#000 25%,transparent 100%);
+  }
+
+  .card{
+    position:relative;z-index:1;width:100%;max-width:440px;
+    background:linear-gradient(180deg,var(--bg-2),#0a0709);
+    border:1px solid var(--line);border-radius:18px;
+    padding:38px 30px 32px;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;border-radius:18px;padding:1px;pointer-events:none;
+    background:linear-gradient(115deg,var(--blood),transparent 35%,transparent 65%,var(--ice));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+            mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;
+  }
+
+  .eyebrow{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--ice);display:flex;align-items:center;gap:8px;
+  }
+  .eyebrow::before{
+    content:"";width:7px;height:7px;border-radius:50%;background:var(--blood);
+    box-shadow:0 0 10px var(--blood);animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+  .avatar-wrap{margin:22px 0 4px;display:flex;align-items:center;gap:18px}
+  .avatar{
+    width:78px;height:78px;border-radius:16px;
+    border:1px solid var(--ice-dim);object-fit:cover;background:#15171c;
+    box-shadow:0 0 0 4px rgba(116,182,255,.08), 0 0 22px rgba(255,59,84,.18);
+  }
+
+  .name{
+    font-size:clamp(38px,12vw,52px);font-weight:700;
+    letter-spacing:-.02em;line-height:.95;position:relative;color:var(--white);
+  }
+  .name span{position:relative}
+  .name span::before,.name span::after{content:"skeleton";position:absolute;inset:0}
+  .name span::before{color:var(--ice);left:2px;animation:gl1 4.5s steps(2,end) infinite}
+  .name span::after{color:var(--blood);left:-2px;animation:gl2 5.7s steps(2,end) infinite}
+  @keyframes gl1{
+    0%,92%,100%{opacity:0;clip-path:inset(0 0 100% 0)}
+    93%{opacity:.7;clip-path:inset(20% 0 40% 0)}
+    96%{opacity:.7;clip-path:inset(60% 0 10% 0)}
+  }
+  @keyframes gl2{
+    0%,90%,100%{opacity:0;clip-path:inset(0 0 100% 0)}
+    91%{opacity:.6;clip-path:inset(50% 0 30% 0)}
+    95%{opacity:.6;clip-path:inset(10% 0 70% 0)}
+  }
+  .tagline{
+    margin-top:10px;color:var(--dim);
+    font-family:"JetBrains Mono",monospace;font-size:13px;
+  }
+  .tagline b{color:var(--white);font-weight:500}
+  .lvl{color:var(--ice)}
+
+  .links{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+  .lnk{
+    display:flex;align-items:center;gap:14px;padding:15px 16px;
+    border:1px solid var(--line);border-radius:12px;
+    background:#0e0a0d;color:var(--white);text-decoration:none;
+    transition:transform .18s ease,border-color .18s ease,background .18s ease;
+  }
+  .lnk:hover{transform:translateY(-2px)}
+  .lnk:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+  .lnk .ico{flex:0 0 22px;width:22px;height:22px;color:var(--dim);transition:color .18s}
+  .lnk .txt{flex:1;min-width:0}
+  .lnk .t1{font-weight:500;font-size:15px}
+  .lnk .t2{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lnk .arr{color:var(--dim);transition:transform .18s,color .18s}
+  .lnk.steam:hover{border-color:var(--ice-dim);background:#0c1119}
+  .lnk.steam:hover .ico,.lnk.steam:hover .arr{color:var(--ice)}
+  .lnk.gh:hover{border-color:#3a3f49;background:#14161b}
+  .lnk.gh:hover .ico,.lnk.gh:hover .arr{color:var(--white)}
+  .lnk.disc:hover{border-color:var(--blood-dim);background:#170a0e}
+  .lnk.disc:hover .ico,.lnk.disc:hover .arr{color:var(--blood)}
+  .lnk:hover .arr{transform:translate(2px,-2px)}
+
+  footer{
+    margin-top:24px;text-align:center;
+    font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;
+    text-transform:uppercase;color:#5a4750;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .name span::before,.name span::after,.eyebrow::before{animation:none}
+    .lnk,.lnk .arr{transition:none}
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <p class="eyebrow">online // links</p>
+
+    <div class="avatar-wrap">
+      <img class="avatar" src="https://avatars.githubusercontent.com/u/133026955?v=4" alt="Аватар skeleton" />
+      <h1 class="name"><span>skeleton</span></h1>
+    </div>
+
+    <p class="tagline">gamer &amp; coder · <span class="lvl">steam: lvl <span id="lvl">14</span></span> · <b>@skeletonreal442</b></p>
+
+    <nav class="links">
+      <a class="lnk steam" href="https://steamcommunity.com/id/skeletonreal/" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.98 0C5.66 0 .49 4.9.02 11.1l6.44 2.66a3.4 3.4 0 0 1 1.92-.6l2.86-4.15v-.06a4.54 4.54 0 1 1 4.54 4.54h-.1l-4.08 2.92a3.4 3.4 0 0 1-6.76.51L.13 14.4A12 12 0 1 0 11.98 0zM7.55 18.21l-1.48-.61a2.57 2.57 0 0 0 4.74-.5 2.57 2.57 0 0 0-3.34-3.4l1.53.63a1.89 1.89 0 1 1-1.45 3.48zm10.78-9.66a3.03 3.03 0 1 0-6.05 0 3.03 3.03 0 0 0 6.05 0zm-5.29 0a2.27 2.27 0 1 1 4.54 0 2.27 2.27 0 0 1-4.54 0z"/></svg>
+        <span class="txt">
+          <span class="t1">Steam</span>
+          <span class="t2">steamcommunity.com/id/skeletonreal</span>
+        </span>
+        <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+
+      <a class="lnk gh" href="https://github.com/skeletonreal442" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.67 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.58.24 2.75.12 3.04.74.8 1.18 1.83 1.18 3.08 0 4.4-2.7 5.37-5.26 5.66.41.36.78 1.07.78 2.16v3.2c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        <span class="txt">
+          <span class="t1">GitHub</span>
+          <span class="t2">github.com/skeletonreal442</span>
+        </span>
+        <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+
+      <a class="lnk disc" href="https://discord.com/users/1435253694177349695" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.32 4.37A19.8 19.8 0 0 0 15.45 2.9a13.9 13.9 0 0 0-.64 1.3 18.3 18.3 0 0 0-5.62 0 13 13 0 0 0-.65-1.3A19.7 19.7 0 0 0 3.66 4.4 20.3 20.3 0 0 0 .17 18.06a19.9 19.9 0 0 0 6.07 3.06c.49-.67.93-1.38 1.3-2.13-.71-.27-1.4-.6-2.04-.99.17-.13.34-.26.5-.4a14.2 14.2 0 0 0 12.1 0c.17.15.34.28.5.4-.65.39-1.34.72-2.05 1 .38.74.82 1.45 1.31 2.12a19.8 19.8 0 0 0 6.07-3.06 20.2 20.2 0 0 0-3.5-13.7zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.41 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.33-.96 2.41-2.16 2.41zm7.96 0c-1.18 0-2.15-1.08-2.15-2.41 0-1.33.95-2.42 2.15-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.33-.95 2.41-2.16 2.41z"/></svg>
+        <span class="txt">
+          <span class="t1">Discord</span>
+          <span class="t2">discord.com/users/skeleton</span>
+        </span>
+        <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+    </nav>
+
+    <footer>built with bones — 2026</footer>
+  </main>
+
+  <script>
+    // Подтягиваем реальный уровень Steam с профиля через публичный CORS-прокси.
+    // Если не вышло — остаётся значение по умолчанию (14).
+    (async () => {
+      const el = document.getElementById('lvl');
+      const profile = 'https://steamcommunity.com/id/skeletonreal/';
+      const proxies = [
+        u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u),
+        u => 'https://corsproxy.io/?url=' + encodeURIComponent(u),
+      ];
+      for (const wrap of proxies) {
+        try {
+          const res = await fetch(wrap(profile), { cache: 'no-store' });
+          if (!res.ok) continue;
+          const html = await res.text();
+          // Уровень лежит в .friendPlayerLevelNum на странице профиля
+          const m = html.match(/friendPlayerLevelNum[^>]*>\s*(\d+)/i);
+          if (m && m[1]) { el.textContent = m[1]; return; }
+        } catch (_) { /* пробуем следующий прокси */ }
+      }
+    })();
+  </script>
+</body>
+</html>
