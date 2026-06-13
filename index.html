@@ -145,7 +145,7 @@
       <h1 class="name"><span>skeleton</span></h1>
     </div>
 
-    <p class="tagline">gamer &amp; coder · <span class="lvl">steam: lvl <span id="lvl">14</span></span> · <b>@skeletonreal442</b></p>
+    <p class="tagline"><span class="lvl">steam: lvl <span id="lvl">14</span></span> · <b>@skeletonreal442</b></p>
 
     <nav class="links">
       <a class="lnk steam" href="https://steamcommunity.com/id/skeletonreal/" target="_blank" rel="noopener">
@@ -176,12 +176,10 @@
       </a>
     </nav>
 
-    <footer>built with bones — 2026</footer>
+    <footer>BIO SITE</footer>
   </main>
 
   <script>
-    // Подтягиваем реальный уровень Steam с профиля через публичный CORS-прокси.
-    // Если не вышло — остаётся значение по умолчанию (14).
     (async () => {
       const el = document.getElementById('lvl');
       const profile = 'https://steamcommunity.com/id/skeletonreal/';
@@ -194,10 +192,9 @@
           const res = await fetch(wrap(profile), { cache: 'no-store' });
           if (!res.ok) continue;
           const html = await res.text();
-          // Уровень лежит в .friendPlayerLevelNum на странице профиля
           const m = html.match(/friendPlayerLevelNum[^>]*>\s*(\d+)/i);
           if (m && m[1]) { el.textContent = m[1]; return; }
-        } catch (_) { /* пробуем следующий прокси */ }
+        } catch (_) {}
       }
     })();
   </script>
